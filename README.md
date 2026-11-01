@@ -18,7 +18,8 @@ US stock returns over **5** and **10** trading days.
 [Approach](#-approach) •
 [Roadmap](#-roadmap) •
 [Folder Structure](#-folder-structure) •
-[Getting Started](#-getting-started)
+[Getting Started](#-getting-started) •
+[Disclaimer](#-disclaimer)
 
 </div>
 
@@ -113,10 +114,12 @@ weather-driven-stock-prediction/
 │   ├── 📂 raw/              # Original, untouched datasets
 │   └── 📂 processed/        # Cleaned and aligned datasets
 ├── 📂 docs/
-│   └── 📄 learning-path.md  # Stage-by-stage learning roadmap
+│   ├── 📄 learning-path.md  # Stage-by-stage learning roadmap
+│   └── 📄 data-sources.md   # Where every dataset comes from
 ├── 📂 notebooks/            # Exploratory analysis
 ├── 📂 reports/
-│   └── 📂 figures/          # Generated charts
+│   ├── 📂 figures/          # Generated charts
+│   └── 📄 results.md        # Experiment log, including failed attempts
 ├── 📂 scripts/              # Utility scripts
 ├── 📂 src/                  # Project source code
 ├── 📂 tests/                # Tests
@@ -128,9 +131,9 @@ weather-driven-stock-prediction/
 | ------------------- | ----------------------------------------------- | --------------------- |
 | `data/raw/`         | Original downloads, never edited by hand        | ❌ Local only          |
 | `data/processed/`   | Data ready for analysis and modeling            | ❌ Local only          |
-| `docs/`             | Roadmap and project notes                       | ✅                     |
+| `docs/`             | Roadmap, data sources, and project notes        | ✅                     |
 | `notebooks/`        | Exploration and experiments                     | ✅                     |
-| `reports/figures/`  | Charts and results shared with the project      | ✅                     |
+| `reports/`          | Experiment log and result figures               | ✅                     |
 | `scripts/`          | One-off helpers (downloads, conversions)        | ✅                     |
 | `src/`              | Reusable project code                           | ✅                     |
 | `tests/`            | Tests for the code in `src/`                    | ✅                     |
@@ -139,6 +142,7 @@ weather-driven-stock-prediction/
 > Empty folders contain `.gitkeep` files so Git can track them. Datasets are
 > ignored by `.gitignore` to keep the repository light, while results and
 > figures in `reports/` are committed so findings stay visible.
+> [`docs/data-sources.md`](docs/data-sources.md) explains how to obtain the data.
 
 ## 🚀 Getting Started
 
@@ -146,6 +150,19 @@ There is nothing to install or run yet. 🙂
 
 **🎯 First task:** learn to read a small CSV, inspect its first five rows,
 and explain what each column means.
+
+**📒 Where things are recorded**
+
+- Progress → [learning roadmap](docs/learning-path.md) checklists
+- Data origins → [data sources](docs/data-sources.md)
+- Experiments and results → [experiment log](reports/results.md)
+
+## ⚠️ Disclaimer
+
+> [!WARNING]
+> This is an educational project. Nothing in this repository is financial or
+> investment advice. Past patterns, including any found here, do not guarantee
+> future returns. Do not use these models or results to make trading decisions.
 
 ---
 
