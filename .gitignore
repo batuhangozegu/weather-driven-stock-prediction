@@ -13,13 +13,11 @@ dist/
 .env
 .env.*
 
-# Local datasets and generated figures
+# Local datasets (results in reports/ are tracked)
 data/raw/*
 !data/raw/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
-reports/figures/*
-!reports/figures/.gitkeep
 
 # Editor and operating system files
 .vscode/

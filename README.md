@@ -130,14 +130,15 @@ weather-driven-stock-prediction/
 | `data/processed/`   | Data ready for analysis and modeling            | ❌ Local only          |
 | `docs/`             | Roadmap and project notes                       | ✅                     |
 | `notebooks/`        | Exploration and experiments                     | ✅                     |
-| `reports/figures/`  | Charts produced by notebooks and scripts        | ❌ Local only          |
+| `reports/figures/`  | Charts and results shared with the project      | ✅                     |
 | `scripts/`          | One-off helpers (downloads, conversions)        | ✅                     |
 | `src/`              | Reusable project code                           | ✅                     |
 | `tests/`            | Tests for the code in `src/`                    | ✅                     |
 
 > [!TIP]
-> Empty folders contain `.gitkeep` files so Git can track them. Datasets and
-> generated figures are ignored by `.gitignore` to keep the repository light.
+> Empty folders contain `.gitkeep` files so Git can track them. Datasets are
+> ignored by `.gitignore` to keep the repository light, while results and
+> figures in `reports/` are committed so findings stay visible.
 
 ## 🚀 Getting Started
 
