@@ -28,7 +28,7 @@ the README when a whole stage is finished.
 - [ ] Learn forward returns over 5 and 10 trading days.
 - [ ] Use chronological training, validation, and test periods.
 - [ ] Account for overlapping target windows at split boundaries.
-- [ ] Establish a simple baseline before introducing machine learning.
+- [ ] Establish a naive baseline before training machine learning models.
 
 ## 5. Weather comparison
 

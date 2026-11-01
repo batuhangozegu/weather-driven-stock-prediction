@@ -19,6 +19,8 @@ Copy this block for each experiment.
 ### EXP-001: <Short title>
 
 - **Date:** <YYYY-MM-DD>
+- **Commit:** <git commit hash of the code used, e.g. `a1b2c3d`>
+- **Random seed:** <e.g. 42, or "n/a" for deterministic models>
 - **Question:** <What is this experiment trying to find out?>
 - **Assets / regions:** <e.g. 3 utility stocks, Texas weather>
 - **Data period:** <train / validation / test date ranges>

@@ -77,7 +77,7 @@ flowchart LR
 
 - ⏱️ **No look-ahead.** Every record uses only information available at the decision time.
 - 📅 **Chronological splits.** Train, validation, and test periods follow time order.
-- 🪜 **Baseline first.** A simple model comes before any machine learning.
+- 🪜 **Baseline first.** Establish a naive baseline before training machine learning models.
 - ✅ **Null results count.** "Weather doesn't help" is a valid finding and will be reported.
 
 ## 📅 Roadmap
