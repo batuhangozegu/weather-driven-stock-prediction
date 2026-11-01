@@ -1,60 +1,153 @@
-# Weather-Driven Stock Prediction
+<div align="center">
 
-A learning project exploring whether weather data can help predict US stock
-returns over 5 and 10 trading days.
+# 🌦️ Weather-Driven Stock Prediction
 
-## Current status
+**Can the weather tell us something the market doesn't already know?**
 
-Planning stage only. This repository contains documentation and empty folders.
-There is no application code, data collection, model training, or test suite yet.
-Implementation will be added gradually as the required concepts are learned.
+A learning project exploring whether weather data can help predict
+US stock returns over **5** and **10** trading days.
 
-## Research question
+![Status](https://img.shields.io/badge/status-planning-lightgrey?style=flat-square)
+![Stage](https://img.shields.io/badge/stage-0%20%2F%207-blue?style=flat-square)
+![Focus](https://img.shields.io/badge/focus-US%20energy%20%26%20utilities-orange?style=flat-square)
+![Horizon](https://img.shields.io/badge/horizon-5%20%26%2010%20days-green?style=flat-square)
+![Type](https://img.shields.io/badge/type-learning%20project-purple?style=flat-square)
 
-Does weather data improve predictions compared with financial data alone?
-The initial focus will be a small selection of US energy or utility assets.
-Assets, regions, and data sources will be selected during the learning process.
+[Overview](#-overview) •
+[Research Question](#-research-question) •
+[Approach](#-approach) •
+[Roadmap](#-roadmap) •
+[Folder Structure](#-folder-structure) •
+[Getting Started](#-getting-started)
 
-## Folder structure
+</div>
 
-```text
-weather-driven-stock-prediction/
-|-- data/
-|   |-- raw/             # Future original datasets
-|   `-- processed/       # Future prepared datasets
-|-- docs/
-|   `-- learning-path.md # Learning roadmap
-|-- notebooks/          # Future exploratory analysis
-|-- reports/
-|   `-- figures/         # Future charts
-|-- scripts/            # Future utility scripts
-|-- src/                # Future project code
-|-- tests/              # Future tests
-|-- .gitignore
-`-- README.md
+---
+
+## 📌 Overview
+
+> [!NOTE]
+> **Planning stage only.** This repository currently contains documentation and
+> an empty folder skeleton. There is no application code, data collection, model
+> training, or test suite yet. Implementation will be added gradually as the
+> required concepts are learned.
+
+Energy demand rises on hot and cold days, and utilities feel it first. This
+project asks whether that link is strong enough to show up in stock returns,
+or whether the market has already priced it in. The goal is to **learn the
+full workflow honestly**, from raw data to evaluation, not to build a trading system.
+
+## 🔬 Research Question
+
+<table>
+<tr>
+<td>
+
+**Does weather data improve predictions compared with financial data alone?**
+
+</td>
+</tr>
+</table>
+
+| Aspect          | Initial scope                                              |
+| --------------- | ---------------------------------------------------------- |
+| **Assets**      | A small selection of US energy or utility stocks           |
+| **Target**      | Forward returns over 5 and 10 trading days                 |
+| **Baseline**    | Financial-only model                                       |
+| **Challenger**  | Financial + weather model                                  |
+| **Stretch**     | Google WeatherNext forecasts as a separate experiment      |
+
+Assets, regions, and data sources will be chosen during the learning process.
+
+## 🧭 Approach
+
+```mermaid
+flowchart LR
+    A[📈 Price data] --> C[🧹 Clean & align<br/>no look-ahead]
+    B[🌡️ Weather data] --> C
+    C --> D[📊 Financial-only<br/>baseline]
+    C --> E[🌦️ Financial + weather<br/>model]
+    D --> F{⚖️ Compare on<br/>the same dates}
+    E --> F
+    F --> G[📝 Report findings]
 ```
 
-Empty folders contain `.gitkeep` files so Git can track them.
+**Guiding principles**
 
-## Planned stages
+- ⏱️ **No look-ahead.** Every record uses only information available at the decision time.
+- 📅 **Chronological splits.** Train, validation, and test periods follow time order.
+- 🪜 **Baseline first.** A simple model comes before any machine learning.
+- ✅ **Null results count.** "Weather doesn't help" is a valid finding and will be reported.
 
-1. Learn Python tools for data analysis and explore a small price dataset.
-2. Choose assets, regions, and financial and historical weather data sources.
-3. Clean and align the data using only information available at each date.
-4. Learn time-series evaluation and establish a simple financial-only baseline.
-5. Compare financial-only and financial + weather predictions.
-6. Explore Google WeatherNext forecasts as a final, separate experiment.
-7. Document results, including findings that show no improvement.
+## 📅 Roadmap
 
-See the [learning roadmap](docs/learning-path.md) for the next steps.
+| #  | Stage                         | Goal                                                                | Status |
+| :-: | ----------------------------- | ------------------------------------------------------------------- | :----: |
+| 1  | 🐍 **Data analysis basics**    | Learn Pandas and explore a small price dataset                      | ⏳ Next |
+| 2  | 🔎 **Data selection**          | Choose assets, regions, and financial & weather sources             | 🔲 |
+| 3  | 🧹 **Data preparation**        | Clean and align data with no look-ahead                             | 🔲 |
+| 4  | 📐 **Time series & baselines** | Learn time-series evaluation and build a financial-only baseline   | 🔲 |
+| 5  | 🌦️ **Weather comparison**      | Compare financial-only vs. financial + weather predictions          | 🔲 |
+| 6  | 🛰️ **Google WeatherNext**      | Explore WeatherNext forecasts as a final, separate experiment       | 🔲 |
+| 7  | 📢 **Share the findings**      | Document results, including findings that show no improvement      | 🔲 |
 
-## Future stage: Google WeatherNext
+<sub>⏳ Next · 🚧 In progress · ✅ Done · 🔲 Not started</sub>
+
+👉 The detailed checklist for each stage lives in the **[learning roadmap](docs/learning-path.md)**.
+
+<details>
+<summary><b>🛰️ About the Google WeatherNext stage</b></summary>
+<br/>
 
 WeatherNext integration is a future goal. Access options, costs, usage terms,
 forecast archives, and coverage will be reviewed at that stage. No integration
 or access is currently configured.
 
-## First task
+</details>
 
-Learn to read a small CSV, inspect its first five rows, and explain its columns.
-There is nothing to install or run in this repository yet.
+## 📁 Folder Structure
+
+```text
+weather-driven-stock-prediction/
+├── 📂 data/
+│   ├── 📂 raw/              # Original, untouched datasets
+│   └── 📂 processed/        # Cleaned and aligned datasets
+├── 📂 docs/
+│   └── 📄 learning-path.md  # Stage-by-stage learning roadmap
+├── 📂 notebooks/            # Exploratory analysis
+├── 📂 reports/
+│   └── 📂 figures/          # Generated charts
+├── 📂 scripts/              # Utility scripts
+├── 📂 src/                  # Project source code
+├── 📂 tests/                # Tests
+├── 📄 .gitignore
+└── 📄 README.md
+```
+
+| Folder              | Purpose                                         | Tracked by Git        |
+| ------------------- | ----------------------------------------------- | --------------------- |
+| `data/raw/`         | Original downloads, never edited by hand        | ❌ Local only          |
+| `data/processed/`   | Data ready for analysis and modeling            | ❌ Local only          |
+| `docs/`             | Roadmap and project notes                       | ✅                     |
+| `notebooks/`        | Exploration and experiments                     | ✅                     |
+| `reports/figures/`  | Charts produced by notebooks and scripts        | ❌ Local only          |
+| `scripts/`          | One-off helpers (downloads, conversions)        | ✅                     |
+| `src/`              | Reusable project code                           | ✅                     |
+| `tests/`            | Tests for the code in `src/`                    | ✅                     |
+
+> [!TIP]
+> Empty folders contain `.gitkeep` files so Git can track them. Datasets and
+> generated figures are ignored by `.gitignore` to keep the repository light.
+
+## 🚀 Getting Started
+
+There is nothing to install or run yet. 🙂
+
+**🎯 First task:** learn to read a small CSV, inspect its first five rows,
+and explain what each column means.
+
+---
+
+<div align="center">
+<sub>Built step by step as a learning journey 🌱</sub>
+</div>
