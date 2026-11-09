@@ -21,9 +21,11 @@ the README when a whole stage is finished.
 
 ## 3. Data preparation
 
-- [ ] Handle missing and duplicate records.
-- [ ] Align trading sessions, weather observations, and publication times.
-- [ ] Ensure each record uses only information available at the decision time.
+Details: [data-preparation.md](data-preparation.md).
+
+- [x] Handle missing and duplicate records.
+- [x] Align trading sessions, weather observations, and publication times.
+- [x] Ensure each record uses only information available at the decision time.
 
 ## 4. Time series and baselines
 

@@ -8,7 +8,7 @@ A learning project exploring whether weather data can help predict
 US stock returns over **5** and **10** trading days.
 
 ![Status](https://img.shields.io/badge/status-learning-yellow?style=flat-square)
-![Stage](https://img.shields.io/badge/stage-2%20%2F%207-blue?style=flat-square)
+![Stage](https://img.shields.io/badge/stage-3%20%2F%207-blue?style=flat-square)
 ![Focus](https://img.shields.io/badge/focus-US%20energy%20%26%20utilities-orange?style=flat-square)
 ![Horizon](https://img.shields.io/badge/horizon-5%20%26%2010%20days-green?style=flat-square)
 ![Type](https://img.shields.io/badge/type-learning%20project-purple?style=flat-square)
@@ -28,9 +28,9 @@ US stock returns over **5** and **10** trading days.
 ## 📌 Overview
 
 > [!NOTE]
-> **Early stage.** Stages 1 and 2 are done: assets and weather sources are
-> selected and download scripts exist. Data preparation is next. There is no
-> model training or test suite yet.
+> **Early stage.** Stages 1 to 3 are done: data is selected, downloaded,
+> cleaned and aligned with no look-ahead, with tests. Returns and baselines
+> (stage 4) are next. There is no model training yet.
 > The focus is on understanding each step's reasoning; code is added as each
 > stage is reached.
 
@@ -87,8 +87,8 @@ flowchart LR
 | :-: | ----------------------------- | ------------------------------------------------------------------- | :----: |
 | 1  | 🐍 **Data analysis basics**    | Learn Pandas and explore a small price dataset                      | ✅ |
 | 2  | 🔎 **Data selection**          | Choose assets, regions, and financial & weather sources             | ✅ |
-| 3  | 🧹 **Data preparation**        | Clean and align data with no look-ahead                             | ⏳ Next |
-| 4  | 📐 **Time series & baselines** | Learn time-series evaluation and build a financial-only baseline   | 🔲 |
+| 3  | 🧹 **Data preparation**        | Clean and align data with no look-ahead                             | ✅ |
+| 4  | 📐 **Time series & baselines** | Learn time-series evaluation and build a financial-only baseline   | ⏳ Next |
 | 5  | 🌦️ **Weather comparison**      | Compare financial-only vs. financial + weather predictions          | 🔲 |
 | 6  | 🛰️ **Google WeatherNext**      | Explore WeatherNext forecasts as a final, separate experiment       | 🔲 |
 | 7  | 📢 **Share the findings**      | Document results, including findings that show no improvement      | 🔲 |
@@ -116,15 +116,18 @@ weather-driven-stock-prediction/
 │   └── 📂 processed/        # Cleaned and aligned datasets
 ├── 📂 docs/
 │   ├── 📄 learning-path.md  # Stage-by-stage learning roadmap
-│   └── 📄 data-sources.md   # Where every dataset comes from
+│   ├── 📄 data-sources.md   # Where every dataset comes from
+│   └── 📄 data-preparation.md # How raw data is cleaned and aligned
 ├── 📂 exploration/          # Exploratory analysis scripts
 ├── 📂 reports/
 │   ├── 📂 figures/          # Generated charts
 │   └── 📄 results.md        # Experiment log, including failed attempts
 ├── 📂 scripts/              # Utility scripts
-├── 📂 src/                  # Project source code
+├── 📂 src/weather_stocks/   # Project source code (installable package)
 ├── 📂 tests/                # Tests
 ├── 📄 .gitignore
+├── 📄 pyproject.toml
+├── 📄 requirements.txt
 └── 📄 README.md
 ```
 
@@ -161,10 +164,18 @@ uv pip install --python .venv -r requirements.txt
 .venv\Scripts\python scripts/download_weather.py
 ```
 
+**3. Build the cleaned dataset and run the tests** (output in `data/processed/`):
+
+```powershell
+.venv\Scripts\python scripts/build_dataset.py
+.venv\Scripts\python -m pytest
+```
+
 **📒 Where things are recorded**
 
 - Progress → [learning roadmap](docs/learning-path.md) checklists
 - Data origins → [data sources](docs/data-sources.md)
+- Cleaning and alignment → [data preparation](docs/data-preparation.md)
 - Experiments and results → [experiment log](reports/results.md)
 
 ## ⚠️ Disclaimer
