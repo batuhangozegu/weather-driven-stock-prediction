@@ -7,8 +7,8 @@
 A learning project exploring whether weather data can help predict
 US stock returns over **5** and **10** trading days.
 
-![Status](https://img.shields.io/badge/status-planning-lightgrey?style=flat-square)
-![Stage](https://img.shields.io/badge/stage-0%20%2F%207-blue?style=flat-square)
+![Status](https://img.shields.io/badge/status-learning-yellow?style=flat-square)
+![Stage](https://img.shields.io/badge/stage-2%20%2F%207-blue?style=flat-square)
 ![Focus](https://img.shields.io/badge/focus-US%20energy%20%26%20utilities-orange?style=flat-square)
 ![Horizon](https://img.shields.io/badge/horizon-5%20%26%2010%20days-green?style=flat-square)
 ![Type](https://img.shields.io/badge/type-learning%20project-purple?style=flat-square)
@@ -28,10 +28,11 @@ US stock returns over **5** and **10** trading days.
 ## 📌 Overview
 
 > [!NOTE]
-> **Planning stage only.** This repository currently contains documentation and
-> an empty folder skeleton. There is no application code, data collection, model
-> training, or test suite yet. Implementation will be added gradually as the
-> required concepts are learned.
+> **Early stage.** Stages 1 and 2 are done: assets and weather sources are
+> selected and download scripts exist. Data preparation is next. There is no
+> model training or test suite yet.
+> The focus is on understanding each step's reasoning; code is added as each
+> stage is reached.
 
 Energy demand rises on hot and cold days, and utilities feel it first. This
 project asks whether that link is strong enough to show up in stock returns,
@@ -52,13 +53,13 @@ full workflow honestly**, from raw data to evaluation, not to build a trading sy
 
 | Aspect          | Initial scope                                              |
 | --------------- | ---------------------------------------------------------- |
-| **Assets**      | A small selection of US energy or utility stocks           |
+| **Assets**      | NRG, VST (Texas power), UNG (natural gas), SO (control), SPY (benchmark) |
 | **Target**      | Forward returns over 5 and 10 trading days                 |
 | **Baseline**    | Financial-only model                                       |
 | **Challenger**  | Financial + weather model                                  |
 | **Stretch**     | Google WeatherNext forecasts as a separate experiment      |
 
-Assets, regions, and data sources will be chosen during the learning process.
+Why these assets and regions were chosen is explained in [data sources](docs/data-sources.md#selection-rationale).
 
 ## 🧭 Approach
 
@@ -84,9 +85,9 @@ flowchart LR
 
 | #  | Stage                         | Goal                                                                | Status |
 | :-: | ----------------------------- | ------------------------------------------------------------------- | :----: |
-| 1  | 🐍 **Data analysis basics**    | Learn Pandas and explore a small price dataset                      | ⏳ Next |
-| 2  | 🔎 **Data selection**          | Choose assets, regions, and financial & weather sources             | 🔲 |
-| 3  | 🧹 **Data preparation**        | Clean and align data with no look-ahead                             | 🔲 |
+| 1  | 🐍 **Data analysis basics**    | Learn Pandas and explore a small price dataset                      | ✅ |
+| 2  | 🔎 **Data selection**          | Choose assets, regions, and financial & weather sources             | ✅ |
+| 3  | 🧹 **Data preparation**        | Clean and align data with no look-ahead                             | ⏳ Next |
 | 4  | 📐 **Time series & baselines** | Learn time-series evaluation and build a financial-only baseline   | 🔲 |
 | 5  | 🌦️ **Weather comparison**      | Compare financial-only vs. financial + weather predictions          | 🔲 |
 | 6  | 🛰️ **Google WeatherNext**      | Explore WeatherNext forecasts as a final, separate experiment       | 🔲 |
@@ -116,7 +117,7 @@ weather-driven-stock-prediction/
 ├── 📂 docs/
 │   ├── 📄 learning-path.md  # Stage-by-stage learning roadmap
 │   └── 📄 data-sources.md   # Where every dataset comes from
-├── 📂 notebooks/            # Exploratory analysis
+├── 📂 exploration/          # Exploratory analysis scripts
 ├── 📂 reports/
 │   ├── 📂 figures/          # Generated charts
 │   └── 📄 results.md        # Experiment log, including failed attempts
@@ -132,7 +133,7 @@ weather-driven-stock-prediction/
 | `data/raw/`         | Original downloads, never edited by hand        | ❌ Local only          |
 | `data/processed/`   | Data ready for analysis and modeling            | ❌ Local only          |
 | `docs/`             | Roadmap, data sources, and project notes        | ✅                     |
-| `notebooks/`        | Exploration and experiments                     | ✅                     |
+| `exploration/`      | Exploration and learning exercises (`.py`)      | ✅                     |
 | `reports/`          | Experiment log and result figures               | ✅                     |
 | `scripts/`          | One-off helpers (downloads, conversions)        | ✅                     |
 | `src/`              | Reusable project code                           | ✅                     |
@@ -146,10 +147,19 @@ weather-driven-stock-prediction/
 
 ## 🚀 Getting Started
 
-There is nothing to install or run yet. 🙂
+**1. Create the environment** (Windows, using [uv](https://docs.astral.sh/uv/)):
 
-**🎯 First task:** learn to read a small CSV, inspect its first five rows,
-and explain what each column means.
+```powershell
+uv venv --python 3.13 .venv
+uv pip install --python .venv -r requirements.txt
+```
+
+**2. Download the data** (prices 2016–2024 and hourly weather 1987–2024, saved to `data/raw/`):
+
+```powershell
+.venv\Scripts\python scripts/download_prices.py
+.venv\Scripts\python scripts/download_weather.py
+```
 
 **📒 Where things are recorded**
 

@@ -6,15 +6,17 @@ the README when a whole stage is finished.
 
 ## 1. Data analysis basics
 
-- [ ] Learn Pandas, missing values, dates, basic statistics, and simple charts.
-- [ ] Read a small historical price CSV and explain its columns.
-- [ ] Inspect prices and daily returns for one asset.
+- [x] Learn Pandas, missing values, dates, basic statistics, and simple charts.
+- [x] Read a small historical price CSV and explain its columns.
+- [x] Inspect prices and daily returns for one asset.
+
+> Covered in an earlier project, so the exercises here were skipped.
 
 ## 2. Data selection and collection
 
-- [ ] Select a small group of US energy or utility assets and relevant regions.
-- [ ] Investigate financial and historical weather data sources.
-- [ ] Record source terms, coverage, units, time zones, and retrieval dates
+- [x] Select a small group of US energy or utility assets and relevant regions.
+- [x] Investigate financial and historical weather data sources.
+- [x] Record source terms, coverage, units, time zones, and retrieval dates
       in [data-sources.md](data-sources.md).
 
 ## 3. Data preparation
