@@ -47,7 +47,20 @@ Details: [data-preparation.md](data-preparation.md).
 - [ ] Preserve forecast issue and availability times if data can be obtained.
 - [ ] Compare against baselines over a common available period.
 
-## 7. Share the findings
+## 7. Analyst agent and app
+
+Built only after stages 4-6, on top of their saved results. It presents the
+findings; it does not change them.
+
+- [ ] Store prices, weather features, predictions, and metrics in a read-only database.
+- [ ] Build a tool-calling LLM agent (database query, prediction lookup,
+      model comparison, explanation) whose numbers all come from tool results.
+- [ ] Evaluate the agent on questions with known answers, asking each one several times.
+- [ ] Build a Streamlit app with the agent chat and an interactive results explorer.
+- [ ] Keep the disclaimer visible: the agent explains past results and gives no
+      trading advice.
+
+## 8. Share the findings
 
 - [ ] Explain what was learned and how the results can be reproduced.
 - [ ] Describe limitations and possible next steps honestly.

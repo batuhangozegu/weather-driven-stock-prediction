@@ -8,7 +8,7 @@ A learning project exploring whether weather data can help predict
 US stock returns over **5** and **10** trading days.
 
 ![Status](https://img.shields.io/badge/status-learning-yellow?style=flat-square)
-![Stage](https://img.shields.io/badge/stage-3%20%2F%207-blue?style=flat-square)
+![Stage](https://img.shields.io/badge/stage-3%20%2F%208-blue?style=flat-square)
 ![Focus](https://img.shields.io/badge/focus-US%20energy%20%26%20utilities-orange?style=flat-square)
 ![Horizon](https://img.shields.io/badge/horizon-5%20%26%2010%20days-green?style=flat-square)
 ![Type](https://img.shields.io/badge/type-learning%20project-purple?style=flat-square)
@@ -58,6 +58,7 @@ full workflow honestly**, from raw data to evaluation, not to build a trading sy
 | **Baseline**    | Financial-only model                                       |
 | **Challenger**  | Financial + weather model                                  |
 | **Stretch**     | Google WeatherNext forecasts as a separate experiment      |
+| **Showcase**    | LLM analyst agent + Streamlit app, after the research is done |
 
 Why these assets and regions were chosen is explained in [data sources](docs/data-sources.md#selection-rationale).
 
@@ -91,7 +92,8 @@ flowchart LR
 | 4  | 📐 **Time series & baselines** | Learn time-series evaluation and build a financial-only baseline   | ⏳ Next |
 | 5  | 🌦️ **Weather comparison**      | Compare financial-only vs. financial + weather predictions          | 🔲 |
 | 6  | 🛰️ **Google WeatherNext**      | Explore WeatherNext forecasts as a final, separate experiment       | 🔲 |
-| 7  | 📢 **Share the findings**      | Document results, including findings that show no improvement      | 🔲 |
+| 7  | 🤖 **Analyst agent & app**     | LLM agent that answers questions about the results, in a Streamlit app | 🔲 |
+| 8  | 📢 **Share the findings**      | Document results, including findings that show no improvement      | 🔲 |
 
 <sub>⏳ Next · 🚧 In progress · ✅ Done · 🔲 Not started</sub>
 
