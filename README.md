@@ -14,6 +14,7 @@ US stock returns over **5** and **10** trading days.
 ![Type](https://img.shields.io/badge/type-learning%20project-purple?style=flat-square)
 
 [Overview](#-overview) •
+[First Look](#-first-look-at-the-data) •
 [Research Question](#-research-question) •
 [Approach](#-approach) •
 [Roadmap](#-roadmap) •
@@ -30,7 +31,8 @@ US stock returns over **5** and **10** trading days.
 > [!NOTE]
 > **Early stage.** Stages 1 to 3 are done: data is selected, downloaded,
 > cleaned and aligned with no look-ahead, with tests. Returns and baselines
-> (stage 4) are next. There is no model training yet.
+> (stage 4) are next. There is no model training yet, and the test period
+> (2023–2024) is locked.
 > The focus is on understanding each step's reasoning; code is added as each
 > stage is reached.
 
@@ -38,6 +40,45 @@ Energy demand rises on hot and cold days, and utilities feel it first. This
 project asks whether that link is strong enough to show up in stock returns,
 or whether the market has already priced it in. The goal is to **learn the
 full workflow honestly**, from raw data to evaluation, not to build a trading system.
+
+## 🔍 First Look at the Data
+
+All charts use the **training period only (2017–2021)**, so they cannot
+influence choices that are later judged on the validation or test years.
+
+### Winter Storm Uri: weather moved the stocks, but not on the same day
+
+![Winter Storm Uri: Texas temperature and NRG, VST, SPY prices in February 2021](reports/figures/uri_week.png)
+
+- In February 2021 Texas fell more than 20 °C below normal.
+- **NRG** slid during the cold days. **VST** *rose* during the storm, then
+  lost 24 % in a single day a week after it ended, when the cost became known.
+- The weather was public on the day it happened, yet one stock reacted days
+  later. This is one event, not proof, but it is why the project looks at
+  **5 and 10 day** returns rather than the next day only.
+- Extreme cold hurt both companies. A simple "colder means higher power prices
+  means higher profits" story would have got the sign wrong, so the effect may
+  be **non-linear**.
+
+### Seasons: each region has its own weather risk
+
+![Average heating and cooling degree days by month for Texas and the gas region](reports/figures/seasonality.png)
+
+Texas demand peaks with summer cooling (CDD), the New York + Chicago gas region
+with winter heating (HDD). This is why each asset is paired with its own
+region. Markets already know these seasons, so the signal, if any, should be in
+the deviation from normal.
+
+### A trap in the anomalies
+
+![Texas cooling degree days in 2017 and their deviation from normal](reports/figures/cdd_anomaly_trap.png)
+
+The largest Texas "heat" anomaly of 2017 was a warm **November** day, not the
+summer peak, because the November normal is close to zero. The grid is
+stressed by the summer level, not by the November surprise, so stage 5 will
+test degree-day **levels** as well as anomalies.
+
+Charts are rebuilt with `scripts/make_figures.py`.
 
 ## 🔬 Research Question
 
@@ -55,6 +96,7 @@ full workflow honestly**, from raw data to evaluation, not to build a trading sy
 | --------------- | ---------------------------------------------------------- |
 | **Assets**      | NRG, VST (Texas power), UNG (natural gas), SO (control), SPY (benchmark) |
 | **Target**      | Forward returns over 5 and 10 trading days                 |
+| **Periods**     | Train 2017–2021 · validation 2022 · test 2023–2024 (locked) |
 | **Baseline**    | Financial-only model                                       |
 | **Challenger**  | Financial + weather model                                  |
 | **Stretch**     | Google WeatherNext forecasts as a separate experiment      |
@@ -171,6 +213,12 @@ uv pip install --python .venv -r requirements.txt
 ```powershell
 .venv\Scripts\python scripts/build_dataset.py
 .venv\Scripts\python -m pytest
+```
+
+**4. Redraw the README charts** (training period only, saved to `reports/figures/`):
+
+```powershell
+.venv\Scripts\python scripts/make_figures.py
 ```
 
 **📒 Where things are recorded**
