@@ -30,7 +30,10 @@ Details: [data-preparation.md](data-preparation.md).
 ## 4. Time series and baselines
 
 - [ ] Learn forward returns over 5 and 10 trading days.
-- [ ] Use chronological training, validation, and test periods.
+- [x] Use chronological training, validation, and test periods.
+      Locked on 2026-11-10 in [`splits.py`](../src/weather_stocks/splits.py):
+      train 2017–2021, validation 2022, test 2023–2024. The test period
+      raises an error unless it is unlocked on purpose at the end of stage 5.
 - [ ] Account for overlapping target windows at split boundaries.
 - [ ] Establish a naive baseline before training machine learning models.
 
