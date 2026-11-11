@@ -29,13 +29,20 @@ Details: [data-preparation.md](data-preparation.md).
 
 ## 4. Time series and baselines
 
-- [ ] Learn forward returns over 5 and 10 trading days.
+- [x] Learn forward returns over 5 and 10 trading days.
+      [`targets.py`](../src/weather_stocks/targets.py): the target on day t is
+      close[t + h] / close[t] - 1, counted in trading days.
 - [x] Use chronological training, validation, and test periods.
       Locked on 2026-11-10 in [`splits.py`](../src/weather_stocks/splits.py):
       train 2017–2021, validation 2022, test 2023–2024. The test period
       raises an error unless it is unlocked on purpose at the end of stage 5.
-- [ ] Account for overlapping target windows at split boundaries.
-- [ ] Establish a naive baseline before training machine learning models.
+- [x] Account for overlapping target windows at split boundaries.
+      `select_period(..., horizon=h)` drops the last h rows of each period,
+      whose targets would use prices from the next period.
+- [x] Establish a naive baseline before training machine learning models.
+      [`baselines.py`](../src/weather_stocks/baselines.py): zero, train mean
+      and momentum, scored with MAE (main), RMSE and hit rate on validation
+      2022. Results: [`baselines_validation.csv`](../reports/baselines_validation.csv).
 
 ## 5. Weather comparison
 
