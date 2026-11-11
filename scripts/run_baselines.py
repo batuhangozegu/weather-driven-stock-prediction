@@ -30,7 +30,7 @@ def main() -> None:
         [evaluate_baselines(panel, t, h) for t in TICKERS for h in HORIZONS],
         ignore_index=True,
     )
-    results.round(5).to_csv(OUT, index=False)
+    results.round(5).to_csv(OUT, index=False, lineterminator="\n")
     print(results.round(4).to_string(index=False))
     print(f"\nSaved {OUT.relative_to(ROOT)}")
 
