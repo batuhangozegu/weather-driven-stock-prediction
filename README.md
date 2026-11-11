@@ -29,10 +29,11 @@ US stock returns over **5** and **10** trading days.
 ## 📌 Overview
 
 > [!NOTE]
-> **Early stage.** Stages 1 to 3 are done: data is selected, downloaded,
-> cleaned and aligned with no look-ahead, with tests. Returns and baselines
-> (stage 4) are next. There is no model training yet, and the test period
-> (2023–2024) is locked.
+> **Early stage.** Stages 1 to 4 are done: data is selected, downloaded,
+> cleaned and aligned with no look-ahead, 5 and 10 day forward returns are
+> purged at period boundaries, and naive financial-only baselines are scored
+> on the validation year. The weather comparison (stage 5) is next. There is
+> no weather model yet, and the test period (2023–2024) is locked.
 > The focus is on understanding each step's reasoning; code is added as each
 > stage is reached.
 
@@ -131,8 +132,8 @@ flowchart LR
 | 1  | 🐍 **Data analysis basics**    | Learn Pandas and explore a small price dataset                      | ✅ |
 | 2  | 🔎 **Data selection**          | Choose assets, regions, and financial & weather sources             | ✅ |
 | 3  | 🧹 **Data preparation**        | Clean and align data with no look-ahead                             | ✅ |
-| 4  | 📐 **Time series & baselines** | Learn time-series evaluation and build a financial-only baseline   | ⏳ Next |
-| 5  | 🌦️ **Weather comparison**      | Compare financial-only vs. financial + weather predictions          | 🔲 |
+| 4  | 📐 **Time series & baselines** | Learn time-series evaluation and build a financial-only baseline   | ✅ |
+| 5  | 🌦️ **Weather comparison**      | Compare financial-only vs. financial + weather predictions          | ⏳ Next |
 | 6  | 🛰️ **Google WeatherNext**      | Explore WeatherNext forecasts as a final, separate experiment       | 🔲 |
 | 7  | 🤖 **Analyst agent & app**     | LLM agent that answers questions about the results, in a Streamlit app | 🔲 |
 | 8  | 📢 **Share the findings**      | Document results, including findings that show no improvement      | 🔲 |
