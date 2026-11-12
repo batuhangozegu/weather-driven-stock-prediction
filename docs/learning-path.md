@@ -46,10 +46,10 @@ Details: [data-preparation.md](data-preparation.md).
 
 ## 5. Weather comparison
 
-- [ ] Compare financial-only and financial + weather models on the same dates.
-- [ ] Record methods, evaluation metrics, limitations, and unsuccessful experiments
+- [x] Compare financial-only and financial + weather models on the same dates.
+- [x] Record methods, evaluation metrics, limitations, and unsuccessful experiments
       in the [experiment log](../reports/results.md).
-- [ ] Treat a lack of improvement as a valid research finding.
+- [x] Treat a lack of improvement as a valid research finding.
 
 ## 6. Google WeatherNext
 
