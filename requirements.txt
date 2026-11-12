@@ -4,6 +4,9 @@ matplotlib>=3.9
 yfinance>=0.2.50
 requests>=2.32
 
+# Models (stage 5)
+scikit-learn>=1.5
+
 # Tests
 pytest>=8
 
