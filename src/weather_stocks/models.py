@@ -43,17 +43,18 @@ def fit_ridge(X: pd.DataFrame, y: pd.Series, horizon: int) -> GridSearchCV:
     return search.fit(X, y)
 
 
-def evaluate_models(
+def model_predictions(
     panel: pd.DataFrame,
     ticker: str,
     horizon: int,
     eval_period: str = "validation",
     unlock_test: bool = False,
-) -> pd.DataFrame:
-    """Fit A (and B, if the ticker has a weather region) on train, score on ``eval_period``.
+) -> tuple[pd.DataFrame, dict[str, float]]:
+    """Fit A (and B, if the ticker has a weather region) on train, predict ``eval_period``.
 
-    Returns one row per model with the shared row count, the chosen alpha and
-    the metrics. Rows are those where the target and every feature of the
+    Returns a table with ``date``, ``actual`` and one prediction column per
+    model (``zero``, ``A_financial``, ``B_weather``), plus the chosen alpha
+    per Ridge model. Rows are those where the target and every feature of the
     largest model exist, so all models see the same days.
     """
     with_weather = ticker in WEATHER_REGION
@@ -70,22 +71,35 @@ def evaluate_models(
     if with_weather:
         feature_sets["B_weather"] = [c for c in data.columns if c not in ("date", "target")]
 
-    actual = rows["target"]
-    results = [
-        {"ticker": ticker, "horizon": horizon, "model": "zero", "rows": len(rows), "alpha": None}
-        | regression_metrics(actual, pd.Series(0.0, index=rows.index))
-    ]
+    preds = pd.DataFrame({"date": rows["date"], "actual": rows["target"], "zero": 0.0})
+    alphas = {}
     for name, cols in feature_sets.items():
         search = fit_ridge(train[cols], train["target"], horizon)
-        predicted = pd.Series(search.predict(rows[cols]), index=rows.index)
-        results.append(
+        preds[name] = search.predict(rows[cols])
+        alphas[name] = search.best_params_["ridge__alpha"]
+    return preds, alphas
+
+
+def evaluate_models(
+    panel: pd.DataFrame,
+    ticker: str,
+    horizon: int,
+    eval_period: str = "validation",
+    unlock_test: bool = False,
+) -> pd.DataFrame:
+    """Metrics of every model in ``model_predictions``, one row per model."""
+    preds, alphas = model_predictions(panel, ticker, horizon, eval_period, unlock_test)
+    models = [c for c in preds.columns if c not in ("date", "actual")]
+    return pd.DataFrame(
+        [
             {
                 "ticker": ticker,
                 "horizon": horizon,
                 "model": name,
-                "rows": len(rows),
-                "alpha": search.best_params_["ridge__alpha"],
+                "rows": len(preds),
+                "alpha": alphas.get(name),
             }
-            | regression_metrics(actual, predicted)
-        )
-    return pd.DataFrame(results)
+            | regression_metrics(preds["actual"], preds[name])
+            for name in models
+        ]
+    )
