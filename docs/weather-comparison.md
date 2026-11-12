@@ -79,4 +79,10 @@ plan only, whatever the validation result.
 
 ## Changes after seeing results
 
-None yet.
+- **2026-11-12, bootstrap details (filled in, not changed).** The plan named a
+  block bootstrap but no settings. They were fixed after the first validation
+  MAE table and **before** any bootstrap was run, and no other settings were
+  tried: circular blocks of **2h** days (10 for 5 days, 20 for 10 days),
+  because neighbouring targets share up to h-1 days and a block twice that
+  long keeps the overlap inside it; 10,000 paired resamples; seed 42; 95 %
+  percentile interval. Gaps reported: B - A, A - zero, B - zero.
