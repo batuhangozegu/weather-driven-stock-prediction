@@ -1,0 +1,27 @@
+ticker,horizon,comparison,gap,ci_low,ci_high,share_better
+nrg,5,B_weather - A_financial,0.00019,-0.00023,0.00064,0.2004
+nrg,5,A_financial - zero,0.00046,-0.00172,0.0025,0.3256
+nrg,5,B_weather - zero,0.00065,-0.00124,0.0025,0.2414
+nrg,10,B_weather - A_financial,2e-05,-0.00103,0.00102,0.4735
+nrg,10,A_financial - zero,0.00258,-0.00232,0.00708,0.1467
+nrg,10,B_weather - zero,0.00261,-0.00151,0.00639,0.1112
+vst,5,B_weather - A_financial,0.00073,0.0002,0.00124,0.0031
+vst,5,A_financial - zero,-0.0011,-0.00201,-0.0002,0.9929
+vst,5,B_weather - zero,-0.00037,-0.00097,0.00027,0.876
+vst,10,B_weather - A_financial,-0.00124,-0.00376,0.00149,0.8227
+vst,10,A_financial - zero,0.00199,-0.00223,0.00648,0.1885
+vst,10,B_weather - zero,0.00075,-0.00153,0.00335,0.2824
+ung,5,B_weather - A_financial,5e-05,-0.00192,0.00196,0.479
+ung,5,A_financial - zero,0.00028,-0.00219,0.00284,0.4164
+ung,5,B_weather - zero,0.00033,-0.00045,0.00114,0.2107
+ung,10,B_weather - A_financial,0.00253,-0.00177,0.00654,0.1176
+ung,10,A_financial - zero,0.00309,-0.00266,0.00837,0.1412
+ung,10,B_weather - zero,0.00561,0.00053,0.01078,0.0147
+so,5,B_weather - A_financial,4e-05,-1e-05,0.0001,0.0568
+so,5,A_financial - zero,-0.00011,-0.00081,0.00064,0.6255
+so,5,B_weather - zero,-7e-05,-0.00076,0.00066,0.5885
+so,10,B_weather - A_financial,-8e-05,-0.0003,0.00016,0.7466
+so,10,A_financial - zero,-0.00103,-0.00253,0.00071,0.8838
+so,10,B_weather - zero,-0.00111,-0.00258,0.00064,0.9015
+spy,5,A_financial - zero,0.00049,-0.00033,0.00129,0.1166
+spy,10,A_financial - zero,0.00157,-0.00093,0.00399,0.1085
