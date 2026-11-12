@@ -134,7 +134,7 @@ flowchart LR
 | 3  | 🧹 **Data preparation**        | Clean and align data with no look-ahead                             | ✅ |
 | 4  | 📐 **Time series & baselines** | Learn time-series evaluation and build a financial-only baseline   | ✅ |
 | 5  | 🌦️ **Weather comparison**      | Compare financial-only vs. financial + weather predictions          | ✅ |
-| 6  | 🛰️ **Google WeatherNext**      | Explore WeatherNext forecasts as a final, separate experiment       | 🔲 |
+| 6  | 🛰️ **Google WeatherNext**      | Explore WeatherNext forecasts as a final, separate experiment       | ⏳ Next |
 | 7  | 🤖 **Analyst agent & app**     | LLM agent that answers questions about the results, in a Streamlit app | 🔲 |
 | 8  | 📢 **Share the findings**      | Document results, including findings that show no improvement      | 🔲 |
 
