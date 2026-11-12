@@ -8,7 +8,7 @@ A learning project exploring whether weather data can help predict
 US stock returns over **5** and **10** trading days.
 
 ![Status](https://img.shields.io/badge/status-learning-yellow?style=flat-square)
-![Stage](https://img.shields.io/badge/stage-3%20%2F%208-blue?style=flat-square)
+![Stage](https://img.shields.io/badge/stage-5%20%2F%208-blue?style=flat-square)
 ![Focus](https://img.shields.io/badge/focus-US%20energy%20%26%20utilities-orange?style=flat-square)
 ![Horizon](https://img.shields.io/badge/horizon-5%20%26%2010%20days-green?style=flat-square)
 ![Type](https://img.shields.io/badge/type-learning%20project-purple?style=flat-square)
@@ -29,13 +29,13 @@ US stock returns over **5** and **10** trading days.
 ## 📌 Overview
 
 > [!NOTE]
-> **Early stage.** Stages 1 to 4 are done: data is selected, downloaded,
-> cleaned and aligned with no look-ahead, 5 and 10 day forward returns are
-> purged at period boundaries, and naive financial-only baselines are scored
-> on the validation year. The weather comparison (stage 5) is next. There is
-> no weather model yet, and the test period (2023–2024) is locked.
-> The focus is on understanding each step's reasoning; code is added as each
-> stage is reached.
+> **Stages 1 to 5 are done.** Financial-only and financial + weather Ridge
+> models were compared under a [plan written before any result](docs/weather-comparison.md),
+> on validation 2022 and then once on the locked test years 2023–2024.
+> **Finding: no stable weather effect.** Weather never beat the zero
+> baseline beyond chance, gains flipped sign between years, and a placebo
+> passed the same rule. Details in the [experiment log](reports/results.md)
+> (EXP-001, EXP-002). Stage 6 (Google WeatherNext) is next.
 
 Energy demand rises on hot and cold days, and utilities feel it first. This
 project asks whether that link is strong enough to show up in stock returns,
@@ -133,7 +133,7 @@ flowchart LR
 | 2  | 🔎 **Data selection**          | Choose assets, regions, and financial & weather sources             | ✅ |
 | 3  | 🧹 **Data preparation**        | Clean and align data with no look-ahead                             | ✅ |
 | 4  | 📐 **Time series & baselines** | Learn time-series evaluation and build a financial-only baseline   | ✅ |
-| 5  | 🌦️ **Weather comparison**      | Compare financial-only vs. financial + weather predictions          | ⏳ Next |
+| 5  | 🌦️ **Weather comparison**      | Compare financial-only vs. financial + weather predictions          | ✅ |
 | 6  | 🛰️ **Google WeatherNext**      | Explore WeatherNext forecasts as a final, separate experiment       | 🔲 |
 | 7  | 🤖 **Analyst agent & app**     | LLM agent that answers questions about the results, in a Streamlit app | 🔲 |
 | 8  | 📢 **Share the findings**      | Document results, including findings that show no improvement      | 🔲 |
