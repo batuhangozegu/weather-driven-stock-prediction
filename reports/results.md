@@ -11,6 +11,7 @@ Figures referenced below live in [`figures/`](figures/).
 | -- | ---- | ----- | -------- | ------- | ------ | ------ | ------------ |
 | [EXP-000](#exp-000-naive-financial-only-baselines) | 2026-11-11 | Zero, train mean, momentum | Financial only | 5, 10 days | MAE (validation 2022) | Zero is best or tied for every ticker; momentum is clearly worse | This is the baseline |
 | [EXP-001](#exp-001-ridge-financial-only-vs-financial--weather-validation) | 2026-11-12 | Ridge A (financial) vs. B (+ weather) | Financial / + weather | 5, 10 days | MAE (validation 2022) + block bootstrap | Weather never helps significantly; it hurts VST 5d and UNG 10d. Only the SO placebo passes the rule, by chance | No better than zero, except A on VST 5d |
+| [EXP-002](#exp-002-ridge-financial-only-vs-financial--weather-locked-test) | 2026-11-12 | Same as EXP-001 | Financial / + weather | 5, 10 days | MAE (test 2023–2024, opened once) + block bootstrap | No stable weather effect: signs flip from validation, the SO placebo also passes, B is never clearly better than zero | A's wins over zero are a constant drift bet, not timing |
 
 ## Experiments
 
@@ -97,6 +98,57 @@ Figures referenced below live in [`figures/`](figures/).
   non-linear effects seen in Winter Storm Uri; daily weather at the close
   misses faster intraday reactions; the effective sample is small because
   windows overlap.
+
+### EXP-002: Ridge, financial-only vs. financial + weather (locked test)
+
+- **Date:** 2026-11-12
+- **Commit:** `1cb75c2` (script `f4a37a8` committed before it was run, run once)
+- **Random seed:** 42 for the bootstrap
+- **Question:** Do the EXP-001 setups hold on years that played no part in any
+  choice?
+- **Assets / regions:** as EXP-001
+- **Data period:** fitted on train 2017–2021 only (no refit on 2022, as in the
+  plan), scored on test 2023–2024, purged (497 rows for 5 days, 492 for 10)
+- **Features / Target / Model / Metric(s):** unchanged from EXP-001
+- **Result:** tables in [`weather_comparison_test.csv`](weather_comparison_test.csv)
+  and [`weather_comparison_test_bootstrap.csv`](weather_comparison_test_bootstrap.csv).
+
+  | Ticker | h | zero | A | B | B − A (95 % interval) | Rule passed |
+  | ------ | -: | ---: | -: | -: | --------------------- | :---------: |
+  | NRG | 5 | 3.42 % | **3.31 %** | 3.37 % | **+0.06 [+0.02, +0.10]** | no |
+  | NRG | 10 | 4.99 % | **4.79 %** | 4.87 % | +0.07 [−0.01, +0.16] | no |
+  | VST | 5 | 4.77 % | 4.82 % | **4.74 %** | −0.08 [−0.17, +0.00] | yes |
+  | VST | 10 | 7.68 % | 7.94 % | **7.67 %** | **−0.27 [−0.52, −0.03]** | yes |
+  | UNG | 5 | 6.55 % | **6.49 %** | 6.51 % | +0.01 [−0.06, +0.08] | no |
+  | UNG | 10 | 9.30 % | 9.06 % | **9.01 %** | −0.05 [−0.25, +0.21] | yes |
+  | SO (placebo) | 5 | 1.99 % | **1.96 %** | **1.96 %** | −0.00 [−0.00, +0.00] | no |
+  | SO (placebo) | 10 | 2.79 % | 2.74 % | **2.73 %** | **−0.01 [−0.02, −0.00]** | yes |
+  | SPY | 5 | 1.46 % | **1.39 %** | – | – | – |
+  | SPY | 10 | 2.16 % | **1.95 %** | – | – | – |
+
+- **Compared with baseline:** B is never clearly better than zero: every
+  B − zero interval holds zero (VST 10d: −0.01 [−0.20, +0.18]). A beats zero
+  clearly only for NRG 5d and SPY 5d/10d.
+- **Figures:** none
+- **Takeaways:**
+  - **No stable weather effect.** The rule passes for VST 5d/10d and UNG 10d,
+    but the margins over zero are within chance, VST 5d flips sign from
+    validation (weather was significantly worse there), and the placebo SO 10d
+    passes too, even with an interval below zero. A rule that a placebo can
+    pass does not separate signal from noise at this size.
+  - **VST 10d** is the largest weather gap (−0.27 points vs. A), but B only
+    reaches the zero baseline: weather undoes part of A's error rather than
+    adding forecasting power.
+  - **A's wins are a drift bet.** With alpha 1000–10000, A predicts almost a
+    constant: positive on every test day for NRG, SO and SPY, negative on
+    87–94 % of days for UNG. It wins when the test years drift the same way as
+    train (a rising market in 2023–2024, a falling gas fund), not by timing.
+  - The VST 5d validation result (A beats zero) did **not** hold on test
+    (A − zero +0.04 [−0.07, +0.17]): it was chance, as EXP-001 warned.
+- **Limitations:** as EXP-001; in addition the test period is a strong bull
+  market, which favours any model that leans toward the train mean. The test
+  is now used; any new idea needs new data (for example 2025) to be tested
+  fairly.
 
 ## Entry template
 
