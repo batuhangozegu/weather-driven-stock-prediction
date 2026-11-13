@@ -83,15 +83,27 @@ Details: [data-preparation.md](data-preparation.md).
 Built only after stages 4-6, on top of their saved results. It presents the
 findings; it does not change them.
 
-- [ ] Store prices, weather features, predictions, and metrics in a read-only database.
-- [ ] Build a tool-calling LLM agent (database query, prediction lookup,
+- [x] Store prices, weather features, predictions, and metrics in a read-only database.
+      [`build_app_db.py`](../scripts/build_app_db.py) refuses to write it if any
+      rebuilt metric differs from the saved CSVs.
+- [x] Build a tool-calling LLM agent (database query, prediction lookup,
       model comparison, explanation) whose numbers all come from tool results.
-- [ ] Evaluate the agent on questions with known answers, asking each one several times.
-- [ ] Build a Streamlit app with the agent chat and an interactive results explorer.
-- [ ] Keep the disclaimer visible: the agent explains past results and gives no
+      Local `qwen3:8b` on Ollama, tools in
+      [`agent_tools.py`](../src/weather_stocks/agent_tools.py),
+      loop in [`agent.py`](../src/weather_stocks/agent.py).
+- [x] Evaluate the agent on questions with known answers, asking each one several times.
+      EXP-003: 10/20 questions right in all 3 runs; every run that used a tool was right.
+- [x] Build a Streamlit app with the agent chat and an interactive results explorer.
+      [`app/streamlit_app.py`](../app/streamlit_app.py)
+- [x] Keep the disclaimer visible: the agent explains past results and gives no
       trading advice.
+
+> Plan, tools and question set: [analyst-agent.md](analyst-agent.md).
 
 ## 8. Share the findings
 
-- [ ] Explain what was learned and how the results can be reproduced.
-- [ ] Describe limitations and possible next steps honestly.
+- [x] Explain what was learned and how the results can be reproduced.
+- [x] Describe limitations and possible next steps honestly.
+
+> Both are in the [README](../README.md#-findings), with details in the
+> [experiment log](../reports/results.md).
