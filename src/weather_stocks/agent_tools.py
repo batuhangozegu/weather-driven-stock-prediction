@@ -88,7 +88,13 @@ def _json_value(value):
 def _selection(ticker, horizon, period):
     if not isinstance(ticker, str) or ticker.lower() not in TICKERS:
         raise ValueError(f"Invalid ticker {ticker!r}; valid values: {', '.join(TICKERS)}")
-    if type(horizon) is not int or horizon not in HORIZONS:
+    if type(horizon) is not int:
+        kind = "a string" if isinstance(horizon, str) else f"type {type(horizon).__name__}"
+        raise ValueError(
+            f"Invalid horizon {horizon!r} ({kind}); horizon must be an integer, "
+            f"valid values: {', '.join(map(str, HORIZONS))}"
+        )
+    if horizon not in HORIZONS:
         raise ValueError(f"Invalid horizon {horizon!r}; valid values: {', '.join(map(str, HORIZONS))}")
     if not isinstance(period, str) or period not in PERIOD_LABELS:
         raise ValueError(f"Invalid period {period!r}; valid values: {', '.join(PERIOD_LABELS)}")

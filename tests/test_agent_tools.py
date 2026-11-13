@@ -189,6 +189,19 @@ def test_invalid_selections_list_valid_values(db, tool, field, value, valid):
     assert valid in json.loads(run_tool(tool, arguments, db=db))["error"]
 
 
+@pytest.mark.parametrize("tool", ["get_predictions", "compare_models"])
+@pytest.mark.parametrize("horizon,kind", [("10", "a string"), (10.0, "type float"), (True, "type bool")])
+def test_horizon_type_error_explains_integer_requirement(db, tool, horizon, kind):
+    arguments = {"ticker": "vst", "horizon": horizon, "period": "test"}
+    expected = (
+        f"Invalid horizon {horizon!r} ({kind}); horizon must be an integer, valid values: 5, 10"
+    )
+    with pytest.raises(ValueError) as error:
+        TOOLS[tool](**arguments, db=db)
+    assert str(error.value) == expected
+    assert json.loads(run_tool(tool, arguments, db=db)) == {"error": expected}
+
+
 @pytest.mark.parametrize("bounds", [
     {"start": "2022-02-30"}, {"end": "20220103"}, {"start": "2022-1-03"},
     {"start": 2022}, {"start": "2022-01-01T00:00:00"},
