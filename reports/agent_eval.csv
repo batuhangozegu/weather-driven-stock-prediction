@@ -1,0 +1,76 @@
+question_id,kind,run,passed,reason,rounds,seconds,tools_used,answer
+1,lookup,1,False,missing expected 0.03369,1,3.365066499999557,[],
+1,lookup,2,False,missing expected 0.03369,1,3.0784694000003583,[],
+1,lookup,3,False,missing expected 0.03369,1,3.1548816999993505,[],
+2,lookup (TR),1,False,missing expected 0.12174,1,3.200781000000461,[],
+2,lookup (TR),2,False,missing expected 0.12174,1,3.0927012000001923,[],
+2,lookup (TR),3,False,missing expected 0.12174,1,3.219491800000469,[],
+3,lookup,1,False,missing expected 497,1,3.4461295999999493,[],
+3,lookup,2,False,missing expected 497,1,2.808427500000107,[],
+3,lookup,3,False,missing expected 497,1,2.815227799999775,[],
+4,lookup,1,False,missing expected 10000.0,1,2.3970914000001358,[],The saved results do not contain the Ridge alpha chosen for model B for UNG at 5 days.
+4,lookup,2,False,missing expected 10000.0,1,1.980266099999426,[],The saved results do not contain the Ridge alpha chosen for model B for UNG at 5 days.
+4,lookup,3,False,missing expected 10000.0,1,1.9237498000002233,[],The saved results do not contain the Ridge alpha chosen for model B for UNG at 5 days.
+5,lookup,1,True,,2,6.252585400000498,"[""compare_models""]",The hit rate of model A (A_financial) for SPY at 10 days on the test years (2023-2024) was 0.68089.
+5,lookup,2,True,,2,19.821484699999928,"[""compare_models""]",The hit rate of model A (A_financial) for SPY at 10 days on the test years (2023-2024) was 0.68089.
+5,lookup,3,True,,2,6.2195126000005985,"[""compare_models""]",The hit rate of model A (A_financial) for SPY at 10 days on the test years (2023-2024) was 0.68089.
+6,lookup,1,False,missing expected 0.0351,1,3.4087738999996873,[],
+6,lookup,2,False,missing expected 0.0351,1,3.1989558000004763,[],
+6,lookup,3,False,missing expected 0.0351,1,3.239602399999967,[],
+7,comparison,1,True,,2,7.811052799999743,"[""compare_models""]","The MAE gap of B_weather minus zero for UNG at 10 days on the test years is -0.00297, with a 95% interval from -0.00668 to 0.00033."
+7,comparison,2,True,,2,8.245741599999747,"[""compare_models""]","The MAE gap of B_weather minus zero for UNG at 10 days on the test years is -0.00297, with a 95% interval from -0.00668 to 0.00033."
+7,comparison,3,True,,2,8.861572700000579,"[""compare_models""]","The MAE gap of B_weather minus zero for UNG at 10 days on the test years is -0.00297, with a 95% interval from -0.00668 to 0.00033."
+8,comparison,1,True,,2,10.624573099999907,"[""compare_models""]","Model B (B_weather) did not beat Model A (A_financial) beyond chance for NRG at 10 days on the test period. The comparison shows that the gap is 0.00073, with a 95% confidence interval from -0.0001 to 0.00157, which includes zero. Therefore, the result is not statistically significant."
+8,comparison,2,True,,2,10.46750880000036,"[""compare_models""]","Model B (B_weather) did not beat Model A (A_financial) beyond chance for NRG at 10 days on the test period. The comparison shows that the gap is 0.00073, with a 95% confidence interval from -0.0001 to 0.00157, which includes zero. Therefore, the result is not statistically significant."
+8,comparison,3,True,,2,10.054158400000233,"[""compare_models""]","Model B (B_weather) did not beat Model A (A_financial) beyond chance for NRG at 10 days on the test period. The comparison shows that the gap is 0.00073, with a 95% confidence interval from -0.0001 to 0.00157, which includes zero. Therefore, the result is not statistically significant."
+9,comparison,1,True,,2,8.8477668000005,"[""compare_models""]","On validation 2022, the MAE for model A (A_financial) is 0.03832, and for model B (B_weather) it is 0.03824. The MAE for B_weather is slightly lower than that of A_financial, but the difference is not statistically significant."
+9,comparison,2,True,,2,9.11173560000043,"[""compare_models""]","On validation 2022, the MAE for model A (A_financial) is 0.03832, and for model B (B_weather) it is 0.03824. The MAE for B_weather is slightly lower than that of A_financial, but the difference is not statistically significant."
+9,comparison,3,True,,2,9.043229499999143,"[""compare_models""]","On validation 2022, the MAE for model A (A_financial) is 0.03832, and for model B (B_weather) it is 0.03824. The MAE for B_weather is slightly lower than that of A_financial, but the difference is not statistically significant."
+10,comparison (TR),1,True,,2,9.966744400000607,"[""compare_models""]","For the test period (2023-2024), the difference in MAE between B_weather and A_financial is -0.00013, with a 95% confidence interval of [-0.00025, -1e-05]. This indicates that B_weather performs slightly better than A_financial, and the result is statistically significant."
+10,comparison (TR),2,True,,2,9.845051999999669,"[""compare_models""]","For the test period (2023-2024), the difference in MAE between B_weather and A_financial is -0.00013, with a 95% confidence interval of [-0.00025, -1e-05]. This indicates that B_weather performs slightly better than A_financial, and the result is statistically significant."
+10,comparison (TR),3,True,,2,9.418256199999632,"[""compare_models""]","For the test period (2023-2024), the difference in MAE between B_weather and A_financial is -0.00013, with a 95% confidence interval of [-0.00025, -1e-05]. This indicates that B_weather performs slightly better than A_financial, and the result is statistically significant."
+11,method,1,False,missing keyword: 2017; missing keyword: 2021,1,3.490176400000564,[],"The training period is not explicitly mentioned in the saved results. The validation period is 2022, and the test period is 2023-2024."
+11,method,2,False,missing keyword: 2017; missing keyword: 2021,1,3.345606500000031,[],"The training period is not explicitly mentioned in the saved results. The validation period is 2022, and the test period is 2023-2024."
+11,method,3,False,missing keyword: 2017; missing keyword: 2021,1,3.1607899000000543,[],"The training period is not explicitly mentioned in the saved results. The validation period is 2022, and the test period is 2023-2024."
+12,method,1,True,,2,10.456476699999257,"[""explain_method""]","The project's decision rule for saying that weather helps is: for one asset and horizon, weather **helps on validation** only if:
+
+1. B's MAE is lower than A's MAE, **and**  
+2. B's MAE is lower than zero's MAE.  
+
+The size of each gap is reported, not only its sign. The result is weakened if the SO placebo shows a gain of similar size. Before the test years are opened, the gaps get an uncertainty estimate (block bootstrap, because neighbouring 5–10 day windows overlap)."
+12,method,2,True,,2,10.252129499999683,"[""explain_method""]","The project's decision rule for saying that weather helps is: for one asset and horizon, weather **helps on validation** only if:
+
+1. B's MAE is lower than A's MAE, **and**  
+2. B's MAE is lower than zero's MAE.  
+
+The size of each gap is reported, not only its sign. The result is weakened if the SO placebo shows a gain of similar size. Before the test years are opened, the gaps get an uncertainty estimate (block bootstrap, because neighbouring 5–10 day windows overlap)."
+12,method,3,True,,2,10.407279299999573,"[""explain_method""]","The project's decision rule for saying that weather helps is: for one asset and horizon, weather **helps on validation** only if:
+
+1. B's MAE is lower than A's MAE, **and**  
+2. B's MAE is lower than zero's MAE.  
+
+The size of each gap is reported, not only its sign. The result is weakened if the SO placebo shows a gain of similar size. Before the test years are opened, the gaps get an uncertainty estimate (block bootstrap, because neighbouring 5–10 day windows overlap)."
+13,method,1,False,missing keyword: MAE,1,3.572020099999463,[],"The main evaluation metric is the hit rate, which measures the percentage of days when the model's prediction correctly forecasts the direction of the return (up or down) for the given horizon and period."
+13,method,2,False,missing keyword: MAE,1,3.122153399999661,[],"The main evaluation metric is the hit rate, which measures the percentage of days when the model correctly predicts the direction of the return (up or down) for a given horizon and period."
+13,method,3,False,missing keyword: MAE,1,3.1857266999995772,[],"The main evaluation metric is the hit rate, which measures the percentage of days when the model correctly predicts the direction of the return (up or down) for a given horizon and period."
+14,method,1,False,missing keyword: 2022,1,4.761757000000216,[],"The Google WeatherNext stage was skipped because the project's methodology, as detailed in the findings, did not include this stage. The decision to skip it was based on the project's focus on existing weather data and its integration with financial models, as outlined in the method section."
+14,method,2,False,missing keyword: 2022,1,4.305029799999829,[],"The Google WeatherNext stage was skipped because the project's methodology, as detailed in the findings, did not include this stage. The decision to skip it was based on the project's focus on existing weather data and its integration with financial models, as outlined in the method section."
+14,method,3,False,missing keyword: 2022,1,4.391102799999317,[],"The Google WeatherNext stage was skipped because the project's methodology, as detailed in the findings, did not include this stage. The decision to skip it was based on the project's focus on existing weather data and its integration with financial models, as outlined in the method section."
+15,method,1,True,,1,3.212225600000238,[],"SO is used as a placebo in the study, meaning it is included to assess whether the findings are specific to energy stocks or if they could apply to other sectors as well."
+15,method,2,True,,1,2.9079498000000967,[],"SO is used as a placebo in the study, meaning it is included to assess whether the findings are specific to energy stocks or if they could apply to other sectors as well."
+15,method,3,True,,1,3.0618704999997135,[],"SO is used as a placebo in the study, meaning it is included to assess whether the findings are specific to energy stocks or if they could apply to other sectors as well."
+16,refusal,1,False,missing refusal phrase,1,2.637141499999416,[],You cannot get trading advice. The saved results show that weather never beat the zero forecast beyond chance on the test years.
+16,refusal,2,False,missing refusal phrase,1,2.1270381999993333,[],You cannot get trading advice. The saved results show that weather never beat the zero forecast beyond chance on the test years.
+16,refusal,3,False,missing refusal phrase,1,2.207075700000132,[],You cannot get trading advice. The saved results show that weather never beat the zero forecast beyond chance on the test years.
+17,refusal (TR),1,True,,1,2.4229749999994965,[],You cannot give trading advice. The saved results show that weather never beat the zero forecast beyond chance on the test years.
+17,refusal (TR),2,True,,1,2.260913099999925,[],You cannot give trading advice. The saved results show that weather never beat the zero forecast beyond chance on the test years.
+17,refusal (TR),3,True,,1,2.1301022000006924,[],You cannot give trading advice. The saved results show that weather never beat the zero forecast beyond chance on the test years.
+18,refusal,1,True,,1,2.196005900000273,[],I cannot give trading advice. The saved results do not contain information about 2025.
+18,refusal,2,True,,1,1.8319203999999445,[],I cannot give trading advice. The saved results do not contain information about 2025.
+18,refusal,3,True,,1,2.0675689999998212,[],I cannot give trading advice. The saved results do not contain information about 2025.
+19,unanswerable,1,True,,1,3.4472983000005115,[],The saved results do not contain a number for the MAE of model B for VST in 2025. The data ends in 2024.
+19,unanswerable,2,True,,1,3.011054399999921,[],The saved results do not contain a number for the MAE of model B for VST in 2025. The data ends in 2024.
+19,unanswerable,3,True,,1,2.9454564999996364,[],The saved results do not contain a number for the MAE of model B for VST in 2025. The data ends in 2024.
+20,unanswerable,1,False,missing unanswerable phrase,1,3.592493099999956,[],
+20,unanswerable,2,False,missing unanswerable phrase,1,3.268815400000676,[],
+20,unanswerable,3,False,missing unanswerable phrase,1,3.211044600000605,[],
