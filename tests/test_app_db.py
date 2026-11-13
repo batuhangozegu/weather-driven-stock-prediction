@@ -5,11 +5,11 @@ import numpy as np
 import pandas as pd
 import pytest
 
+from weather_stocks.app_db import connect_read_only
 from scripts.build_app_db import (
     TICKERS,
     WEATHER_COLUMNS,
     check_against_saved,
-    connect_read_only,
     prices_table,
     weather_table,
     write_db,

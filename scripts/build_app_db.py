@@ -20,6 +20,7 @@ import sqlite3
 
 import pandas as pd
 
+from weather_stocks.app_db import DEFAULT_DB, connect_read_only
 from weather_stocks.baselines import regression_metrics
 from weather_stocks.models import model_predictions
 from weather_stocks.targets import HORIZONS
@@ -27,7 +28,7 @@ from weather_stocks.targets import HORIZONS
 ROOT = Path(__file__).resolve().parent.parent
 PANEL = ROOT / "data" / "processed" / "panel_daily.csv"
 REPORTS = ROOT / "reports"
-OUT = ROOT / "data" / "app" / "results.sqlite"
+OUT = DEFAULT_DB
 TICKERS = ["nrg", "vst", "ung", "so", "spy"]
 PERIODS = ("validation", "test")
 WEATHER_COLUMNS = [
@@ -201,15 +202,6 @@ def write_db(tables: dict[str, pd.DataFrame], path: Path) -> None:
         # A failed export must not leave a database that looks ready to use.
         path.unlink(missing_ok=True)
         raise
-
-
-def connect_read_only(path: Path) -> sqlite3.Connection:
-    """Open app results with SQLite enforcing read-only access."""
-    if not path.exists():
-        raise FileNotFoundError(
-            f"{path} does not exist; run .venv/Scripts/python scripts/build_app_db.py first"
-        )
-    return sqlite3.connect(f"file:{path.as_posix()}?mode=ro", uri=True)
 
 
 def main() -> None:
