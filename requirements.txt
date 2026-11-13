@@ -9,6 +9,7 @@ scikit-learn>=1.5
 
 # Analyst agent (stage 7)
 ollama>=0.6
+streamlit>=1.40
 
 # Tests
 pytest>=8
