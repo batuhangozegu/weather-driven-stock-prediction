@@ -20,7 +20,7 @@ import sqlite3
 
 import pandas as pd
 
-from weather_stocks.app_db import DEFAULT_DB, connect_read_only
+from weather_stocks.app_db import DEFAULT_DB
 from weather_stocks.baselines import regression_metrics
 from weather_stocks.models import model_predictions
 from weather_stocks.targets import HORIZONS
