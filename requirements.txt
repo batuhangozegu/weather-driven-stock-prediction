@@ -7,6 +7,9 @@ requests>=2.32
 # Models (stage 5)
 scikit-learn>=1.5
 
+# Analyst agent (stage 7)
+ollama>=0.6
+
 # Tests
 pytest>=8
 
