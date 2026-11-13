@@ -53,9 +53,30 @@ Details: [data-preparation.md](data-preparation.md).
 
 ## 6. Google WeatherNext
 
-- [ ] Review access, terms, costs, and historical forecast availability.
+- [x] Review access, terms, costs, and historical forecast availability.
 - [ ] Preserve forecast issue and availability times if data can be obtained.
 - [ ] Compare against baselines over a common available period.
+
+> **Skipped after the review (2026-11-13).** The historical forecast archive
+> starts in 2022 for WeatherNext 2 and in 2024 for WeatherNext 3, so it does not
+> overlap the training period 2017–2021. The only covered years, 2022–2024, were
+> already used for validation and the one-time test in stage 5, so a model fit
+> or judged on them would no longer be an honest out-of-sample result.
+> A fair version would need a new design: train on 2022–2024 and test on fresh,
+> unseen data from 2025 onward.
+>
+> What the review found, for anyone picking this up later:
+> - Access goes through the WeatherNext Data Request form (about 5–7 business
+>   days) and a Google Cloud project; data is served via BigQuery, Earth Engine
+>   and Cloud Storage (Zarr). No price is listed for the data itself.
+> - Historical forecasts are CC BY 4.0 (older than 48 hours for WeatherNext 2,
+>   older than 1 hour for WeatherNext 3) and must be attributed.
+> - Runs are published about 7.5 hours after their init time, so a no-look-ahead
+>   feature must use the publication time, not the init time.
+>
+> Sources: [BigQuery guide](https://developers.google.com/weathernext/guides/bigquery),
+> [Earth Engine catalog (WeatherNext 2)](https://developers.google.com/earth-engine/datasets/catalog/projects_gcp-public-data-weathernext_assets_weathernext_2_0_0),
+> [models](https://developers.google.com/weathernext/guides/models).
 
 ## 7. Analyst agent and app
 
