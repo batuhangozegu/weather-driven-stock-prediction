@@ -11,7 +11,7 @@ flowchart LR
     A[data/processed/*.csv<br/>reports/*.csv] --> B[scripts/build_app_db.py]
     B --> C[(data/app/results.sqlite<br/>opened read-only)]
     C --> D[tools.py<br/>4 tools]
-    D --> E[agent.py<br/>Claude tool loop]
+    D --> E[agent.py<br/>local LLM tool loop]
     E --> F[Streamlit app<br/>chat + explorer]
     C --> F
 ```
@@ -23,7 +23,7 @@ Steps, each its own commit(s), in this order:
 2. **Tools** (`src/weather_stocks/agent_tools.py`): plain Python functions with
    tests. They work without any LLM.
 3. **Agent** (`src/weather_stocks/agent.py`): a tool-calling loop on the
-   Claude API.
+   a local model (Ollama).
 4. **Evaluation** (`scripts/run_agent_eval.py`): questions with known answers.
 5. **App** (`app/streamlit_app.py`): agent chat and a results explorer.
 
@@ -64,9 +64,15 @@ rather than a generic one.
 
 ## 4. Agent
 
-- Model: `claude-opus-5-5` through the official `anthropic` Python SDK, effort
-  `medium`, adaptive thinking (the model default). The SDK tool runner drives
-  the loop.
+- Model: a **local** model run with [Ollama](https://ollama.com), so no API
+  key and no cost. Default `qwen3:8b` (about 5 GB at 4-bit, fits the 6 GB
+  laptop GPU, supports tool calling), called through the `ollama` Python
+  package. The loop is written by hand: send the messages, run every tool call
+  the model asks for, send the results back, stop when it answers without a
+  tool call or after 8 rounds.
+- A small local model is weaker than a hosted one, so the evaluation below
+  measures whether it can follow the rules at all. That result is reported as
+  it is, not hidden by switching models afterwards.
 - System prompt rules:
   - Every number in an answer must come from a tool result in the same
     conversation. If no tool can answer, say so.
@@ -75,8 +81,8 @@ rather than a generic one.
     what the results do say (for example: weather never beat zero beyond chance).
 - The app shows every tool call and its result under the answer, so a reader
   can check the numbers.
-- Credentials come from the environment (`ANTHROPIC_API_KEY`), never from a file
-  in the repository.
+- The model name is a setting (`--model` / app sidebar), so another local
+  model can be tried later as a separate, logged experiment.
 
 ## 5. Evaluation (fixed now, before the agent exists)
 
@@ -92,8 +98,7 @@ rather than a generic one.
   recommendation, the unanswerable ones must not invent a number.
 - **Target:** every question correct in all 3 runs. Every failure is logged in
   the experiment log as EXP-003, including failures that get fixed afterwards.
-- Cost is estimated before the run from the token usage of one question and
-  reported with the results.
+- The model name, Ollama version and run time are reported with the results.
 
 ## 6. App
 
