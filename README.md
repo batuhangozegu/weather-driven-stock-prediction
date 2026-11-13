@@ -8,7 +8,7 @@ A learning project exploring whether weather data can help predict
 US stock returns over **5** and **10** trading days.
 
 ![Status](https://img.shields.io/badge/status-learning-yellow?style=flat-square)
-![Stage](https://img.shields.io/badge/stage-5%20%2F%208-blue?style=flat-square)
+![Stage](https://img.shields.io/badge/stage-6%20%2F%208-blue?style=flat-square)
 ![Focus](https://img.shields.io/badge/focus-US%20energy%20%26%20utilities-orange?style=flat-square)
 ![Horizon](https://img.shields.io/badge/horizon-5%20%26%2010%20days-green?style=flat-square)
 ![Type](https://img.shields.io/badge/type-learning%20project-purple?style=flat-square)
@@ -35,7 +35,9 @@ US stock returns over **5** and **10** trading days.
 > **Finding: no stable weather effect.** Weather never beat the zero
 > baseline beyond chance, gains flipped sign between years, and a placebo
 > passed the same rule. Details in the [experiment log](reports/results.md)
-> (EXP-001, EXP-002). Stage 6 (Google WeatherNext) is next.
+> (EXP-001, EXP-002). Stage 6 (Google WeatherNext) was
+> [skipped](docs/learning-path.md#6-google-weathernext) because its forecast
+> archive only starts in 2022. Stage 7 (analyst agent and app) is next.
 
 Energy demand rises on hot and cold days, and utilities feel it first. This
 project asks whether that link is strong enough to show up in stock returns,
@@ -100,7 +102,7 @@ Charts are rebuilt with `scripts/make_figures.py`.
 | **Periods**     | Train 2017–2021 · validation 2022 · test 2023–2024 (locked) |
 | **Baseline**    | Financial-only model                                       |
 | **Challenger**  | Financial + weather model                                  |
-| **Stretch**     | Google WeatherNext forecasts as a separate experiment      |
+| **Stretch**     | Google WeatherNext forecasts (reviewed, skipped: archive starts 2022) |
 | **Showcase**    | LLM analyst agent + Streamlit app, after the research is done |
 
 Why these assets and regions were chosen is explained in [data sources](docs/data-sources.md#selection-rationale).
@@ -134,11 +136,11 @@ flowchart LR
 | 3  | 🧹 **Data preparation**        | Clean and align data with no look-ahead                             | ✅ |
 | 4  | 📐 **Time series & baselines** | Learn time-series evaluation and build a financial-only baseline   | ✅ |
 | 5  | 🌦️ **Weather comparison**      | Compare financial-only vs. financial + weather predictions          | ✅ |
-| 6  | 🛰️ **Google WeatherNext**      | Explore WeatherNext forecasts as a final, separate experiment       | ⏳ Next |
-| 7  | 🤖 **Analyst agent & app**     | LLM agent that answers questions about the results, in a Streamlit app | 🔲 |
+| 6  | 🛰️ **Google WeatherNext**      | Explore WeatherNext forecasts as a final, separate experiment       | ⏭️ |
+| 7  | 🤖 **Analyst agent & app**     | LLM agent that answers questions about the results, in a Streamlit app | ⏳ Next |
 | 8  | 📢 **Share the findings**      | Document results, including findings that show no improvement      | 🔲 |
 
-<sub>⏳ Next · 🚧 In progress · ✅ Done · 🔲 Not started</sub>
+<sub>⏳ Next · 🚧 In progress · ✅ Done · ⏭️ Skipped · 🔲 Not started</sub>
 
 👉 The detailed checklist for each stage lives in the **[learning roadmap](docs/learning-path.md)**.
 
@@ -146,9 +148,12 @@ flowchart LR
 <summary><b>🛰️ About the Google WeatherNext stage</b></summary>
 <br/>
 
-WeatherNext integration is a future goal. Access options, costs, usage terms,
-forecast archives, and coverage will be reviewed at that stage. No integration
-or access is currently configured.
+Access, terms, costs and the forecast archive were reviewed in November 2026.
+The archive starts in 2022 (WeatherNext 2) or 2024 (WeatherNext 3), which does
+not overlap the 2017–2021 training period, and 2022–2024 were already used for
+validation and testing. The stage was therefore skipped; the review and what a
+fair version would need are in the [learning roadmap](docs/learning-path.md#6-google-weathernext).
+No integration or access is configured.
 
 </details>
 
