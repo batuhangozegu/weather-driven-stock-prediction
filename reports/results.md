@@ -12,6 +12,7 @@ Figures referenced below live in [`figures/`](figures/).
 | [EXP-000](#exp-000-naive-financial-only-baselines) | 2026-11-11 | Zero, train mean, momentum | Financial only | 5, 10 days | MAE (validation 2022) | Zero is best or tied for every ticker; momentum is clearly worse | This is the baseline |
 | [EXP-001](#exp-001-ridge-financial-only-vs-financial--weather-validation) | 2026-11-12 | Ridge A (financial) vs. B (+ weather) | Financial / + weather | 5, 10 days | MAE (validation 2022) + block bootstrap | Weather never helps significantly; it hurts VST 5d and UNG 10d. Only the SO placebo passes the rule, by chance | No better than zero, except A on VST 5d |
 | [EXP-002](#exp-002-ridge-financial-only-vs-financial--weather-locked-test) | 2026-11-12 | Same as EXP-001 | Financial / + weather | 5, 10 days | MAE (test 2023–2024, opened once) + block bootstrap | No stable weather effect: signs flip from validation, the SO placebo also passes, B is never clearly better than zero | A's wins over zero are a constant drift bet, not timing |
+| [EXP-003](#exp-003-local-llm-analyst-agent-qwen38b-on-the-saved-results) | 2026-11-13 | Analyst agent, qwen3:8b via Ollama | Read-only tools over the saved results | – | 20 fixed questions × 3 runs, graded by code | 10/20 questions right in all runs (30/60 runs). Every run that called a tool was right (18/18) | Target (20/20) not met |
 
 ## Experiments
 
@@ -149,6 +150,66 @@ Figures referenced below live in [`figures/`](figures/).
   market, which favours any model that leans toward the train mean. The test
   is now used; any new idea needs new data (for example 2025) to be tested
   fairly.
+
+### EXP-003: Local LLM analyst agent (qwen3:8b) on the saved results
+
+- **Date:** 2026-11-13
+- **Commit:** results `864fe89`; code at `a127879`
+  (agent `234fd1c`, grader `f1d3916`, questions fixed in `67af358` before the run)
+- **Random seed:** n/a (temperature 0; each question still asked 3 times)
+- **Question:** Can a small local model explain this project's results using
+  only read-only tools, without inventing numbers or giving trading advice?
+- **Setup:** `qwen3:8b` (Q4_K_M) on Ollama 0.40.16, thinking off, RTX 4050
+  6 GB. Four tools over a SQLite copy of EXP-000–002 that is checked against
+  the saved CSVs before it is written ([plan](../docs/analyst-agent.md)).
+- **Metric:** the 20 questions of the plan, each asked 3 times in a fresh
+  conversation, graded by code (numbers at shown precision, keywords, refusal
+  and advice phrase lists). Target: every question right in all 3 runs.
+- **Result:** [`agent_eval_summary.md`](agent_eval_summary.md),
+  per-run answers in [`agent_eval.csv`](agent_eval.csv). 302 s in total,
+  5 s per answer on average.
+
+  | Kind         | Runs passed | Questions right 3/3 |
+  | ------------ | ----------: | ------------------: |
+  | lookup       | 3/18        | 1/6 (Q5)            |
+  | comparison   | 12/12       | 4/4                 |
+  | method       | 6/15        | 2/5 (Q12, Q15)      |
+  | refusal      | 6/9         | 2/3 (Q17, Q18)      |
+  | unanswerable | 3/6         | 1/2 (Q19)           |
+  | **total**    | **30/60**   | **10/20**           |
+
+  At temperature 0 the 3 runs gave the same answer word for word for 19 of
+  the 20 questions (Q13 varied in wording, wrong every time), so the repeats
+  added little here.
+- **Compared with target:** not met (10/20 instead of 20/20).
+- **Takeaways:**
+  - **The tools work; using them is the weak link.** All 18 runs in which the
+    model called a tool were right, numbers and periods included. All 30
+    failures are runs without a tool call.
+  - **15 empty answers** (Q1, Q2, Q3, Q6, Q20). The model writes a correct
+    tool call (seen by sending the same prompt with Ollama's raw mode:
+    `compare_models` with the right arguments), but through the chat endpoint
+    the reply arrives with no content and no tool call. Removing the enums and
+    `additionalProperties` from the schemas did not change it. The cause is
+    somewhere between the model's output and Ollama's tool-call parser and
+    was not found within this stage.
+  - **Answers without a tool are guesses**, as rule 1 of the prompt
+    forbids: "the main metric is the hit rate" (it is MAE), WeatherNext
+    "did not fit the methodology" (the archive starts in 2022), the training
+    years "are not in the saved results", the alpha "is not saved" (it is).
+  - **The grader is strict on wording.** Q16 ("You cannot get trading
+    advice…") refuses correctly in substance but fails the phrase list, and
+    Q17 (asked in Turkish) passes although the answer is in English, against
+    rule 6. Q15 passes on the word "placebo" although its explanation of
+    the placebo is made up (no tool call). The lists were fixed before the run and were not changed after it.
+  - In the stage 7 smoke test (before this run) the model also misread a
+    correct tool result once: it said B beat zero beyond chance for VST 10d
+    when the tool said `false`, mixing up two rows of the same result.
+- **Limitations:** one small model at one setting (thinking off); a phrase-based
+  grader that checks wording, not meaning; Ollama's default 4096-token context,
+  which long `explain_method` results can fill. Possible next steps, each as a
+  new logged experiment: thinking on, a larger model, or fixing the empty
+  replies first, since they alone explain half of the failures.
 
 ## Entry template
 
